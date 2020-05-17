@@ -1,3 +1,8 @@
+@extends('base')
+
+@section('title', $metaTitle)
+
+@section('content')
 <div class="container cont">
     <h1>
         @if(isset($h))
@@ -10,18 +15,19 @@
         @if($news)
             @foreach( $news as $elem)
             <div class="item news-elem">
-                <a href="{{ route('news.all') . '/' . $elem['id'] }}">
+                <a href="{{ route('news.single', $elem['id']) }}">
                     <img src="{{ $elem['img'] }}" alt="{{ $elem['title'] }}">
                 </a>
                 <div class="news-elem-content">
-                    <a href="{{ route('news.all') . '/' . $elem['id'] }}">
+                    <a href="{{ route('news.single', $elem['id']) }}">
                         <h2>{{ $elem['title'] }}</h2>
                     </a>
                     <p><span>Дата публикации: </span>{{ $elem['date_published'] }}</p>
-                    <a href="{{ route('news.all') . '/' . $elem['id'] }}">Узреть истину</a>
+                    <a href="{{ route('news.single', $elem['id']) }}">Узреть истину</a>
                 </div>
             </div>
             @endforeach
         @endif
     </div>
 </div>
+@endsection

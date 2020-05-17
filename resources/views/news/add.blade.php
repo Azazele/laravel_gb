@@ -1,3 +1,8 @@
+@extends('base')
+
+@section('title', $metaTitle)
+
+@section('content')
 <div class="container cont">
     <form action="">
         <div class="form-group">
@@ -25,3 +30,4 @@
         <button type="submit" class="btn btn-primary">Добавить новую статью</button>
     </form>
 </div>
+@endsection

@@ -19,7 +19,7 @@ Route::get('/', [
 ]);
 
 Route::get('/login', [
-    'uses' => 'Login@index',
+    'uses' => 'LoginController@index',
     'as' => 'login'
 ]);
 
@@ -53,7 +53,7 @@ Route::group(
         ]);
         Route::get('/{id}', [
             'uses' => 'NewsController@newsSingle',
-            'as' => 'newsSingle'
+            'as' => 'single'
         ]);
     }
 );

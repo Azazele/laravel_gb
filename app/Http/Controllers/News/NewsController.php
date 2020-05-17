@@ -123,7 +123,7 @@ class NewsController extends Controller
                 $sortedNews[] = $elem;
             }
         }
-        return $sortedNews;
+        return $sortedNews[0];
     }
 
     public function getCatByNewsId (int $news_id) {
@@ -143,39 +143,35 @@ class NewsController extends Controller
     public function allNews () {
         $data = [
             'news' => $this->getNews(),
-            'view' => 'news/allNews',
             'metaTitle' => 'Все новости'
         ];
-        return view ('base', $data);
+        return view ('news.news', $data);
     }
 
     public function newsSingle (int $id) {
         $data = [
-            'news' => $this->getNewsById($id)[0],
-            'view' => 'news/newsSingle',
+            'news' => $this->getNewsById($id),
             'cat' => $this->getCatByNewsId($id),
-            'metaTitle' => $this->getNewsById($id)[0]['title']
+            'metaTitle' => $this->getNewsById($id)['title']
         ];
-        return view ('base', $data);
+        return view ('news.single', $data);
     }
 
     public function allCats () {
         $data = [
             'cats' => $this->getCats(),
-            'view' => 'news/allCats',
             'metaTitle' => 'Все категории'
         ];
-        return view ('base', $data);
+        return view ('news.allCats', $data);
     }
 
     public function cat (int $id) {
         $data = [
             'news' => $this->getNewsByCatId($id),
-            'view' => 'news/allNews',
             'h' => 'Категория: ' . $this->getCats()[$id],
             'metaTitle' => $this->getCats()[$id]
         ];
-        return view ('base', $data);
+        return view ('news.news', $data);
     }
 
     public function addNewsRedir () {
@@ -184,11 +180,16 @@ class NewsController extends Controller
     }
 
     public function addNews (int $id) {
-        $data = [
-            'view' => 'news/add',
-            'metaTitle' => 'Добавить новость',
-            'cats' => $this->getCats()
-        ];
-        return view ('base', $data);
+        $nextId = $this->getCountOfNews() + 1;
+        if ($nextId === $id) {
+            $data = [
+                'view' => '',
+                'metaTitle' => 'Добавить новость',
+                'cats' => $this->getCats()
+            ];
+            return view ('news.add', $data);
+        } else {
+            return $this->addNewsRedir();
+        };
     }
 }

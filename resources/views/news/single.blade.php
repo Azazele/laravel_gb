@@ -1,3 +1,8 @@
+@extends('base')
+
+@section('title', $metaTitle)
+
+@section('content')
 <div class="container cont">
     <div class="single">
         <img src="{{ $news['img'] }}" alt="{{ $news['title'] }}">
@@ -12,3 +17,4 @@
         </div>
     </div>
 </div>
+@endsection

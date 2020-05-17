@@ -1,3 +1,8 @@
+@extends('base')
+
+@section('title', $metaTitle)
+
+@section('content')
 <div class="container cont">
     <form action="" method="post">
         <div class="form-group">
@@ -16,3 +21,4 @@
         <button type="submit" class="btn btn-primary">Войти</button>
     </form>
 </div>
+@endsection

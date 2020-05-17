@@ -17,12 +17,11 @@ class HomeController extends Controller
 
         $data = [
             'domain' => $domain,
-            'view' => 'main',
             'desc' => $desc,
             'news' => $news,
             'metaTitle' => 'Главная'
         ];
 
-        return view('base', $data);
+        return view('main', $data);
     }
 }

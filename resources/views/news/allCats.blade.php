@@ -1,3 +1,8 @@
+@extends('base')
+
+@section('title', $metaTitle)
+
+@section('content')
 <div class="container cont">
     <h1>Категории</h1>
     <div class="items">
@@ -10,3 +15,4 @@
         @endif
     </div>
 </div>
+@endsection
