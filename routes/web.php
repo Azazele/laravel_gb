@@ -13,32 +13,47 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('main', ['name' => 'Stanislav']);
-});
-Route::get('/about', function () {
-    return view('about');
-});
+Route::get('/', [
+    'uses' => 'HomeController@index',
+    'as' => 'main'
+]);
 
-Route::get('/news', function () {
-    $data = [
-        'goods' => [
-            [
-                'h2' => 'Срок обвала курса доллара и последствия для мира',
-                'desc' => 'Нефть в минусе? Минус? Какое странное слово? Мы о музыке?',
-                'img' => 'https://api.rnet.plus/Service/TeaserImage?block_id=337&user_id=000022d4-5e44-0e42-b784-0d930c56692b&teaser_id=1313079&flight_id=2751&u=True&orig_url=https%3a%2f%2fstatic.rnet.plus%2f81%2fC7%2fB9%2f300x195_112_1313079.jpeg'
-            ],
-            [
-                'h2' => 'Срок обвала курса доллара и последствия для мира',
-                'desc' => 'Нефть в минусе? Минус? Какое странное слово? Мы о музыке?',
-                'img' => 'https://api.rnet.plus/Service/TeaserImage?block_id=337&user_id=000022d4-5e44-0e42-b784-0d930c56692b&teaser_id=1313079&flight_id=2751&u=True&orig_url=https%3a%2f%2fstatic.rnet.plus%2f81%2fC7%2fB9%2f300x195_112_1313079.jpeg'
-            ]
-        ]
-    ];
+Route::get('/login', [
+    'uses' => 'Login@index',
+    'as' => 'login'
+]);
 
-    return view('news', $data);
-});
+Route::group(
+    [
+        'prefix' => 'news',
+        'namespace' => 'News',
+        'as' => 'news.'
 
-Route::get('/phpinfo', function () {
-    phpinfo();
-});
+    ],
+    function () {
+        Route::get('/', [
+            'uses' => 'NewsController@allNews',
+            'as' => 'all'
+        ]);
+        Route::get('/cats', [
+            'uses' => 'NewsController@allCats',
+            'as' => 'allCats'
+        ]);
+        Route::get('/cats/{id}', [
+            'uses' => 'NewsController@cat',
+            'as' => 'cat'
+        ]);
+        Route::get('/add', [
+            'uses' => 'NewsController@addNewsRedir',
+            'as' => 'addRedir'
+        ]);
+        Route::get('/add/{id}', [
+            'uses' => 'NewsController@addNews',
+            'as' => 'add'
+        ]);
+        Route::get('/{id}', [
+            'uses' => 'NewsController@newsSingle',
+            'as' => 'newsSingle'
+        ]);
+    }
+);
