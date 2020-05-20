@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -10,6 +11,6 @@ class LoginController extends Controller
         $data = [
             'metaTitle' => 'Вход',
         ];
-        return view('login', $data);
+        return view('admin.login', $data);
     }
 }

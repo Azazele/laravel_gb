@@ -18,9 +18,14 @@ Route::get('/', [
     'as' => 'main'
 ]);
 
-Route::get('/login', [
-    'uses' => 'LoginController@index',
-    'as' => 'login'
+Route::match(['post', 'get'], '/feedback', [
+    'uses' => 'FeedbackController@index',
+    'as' => 'feedback'
+]);
+
+Route::match(['post', 'get'], '/order', [
+    'uses' => 'OrderController@index',
+    'as' => 'order'
 ]);
 
 Route::group(
@@ -54,6 +59,25 @@ Route::group(
         Route::get('/{id}', [
             'uses' => 'NewsController@newsSingle',
             'as' => 'single'
+        ]);
+    }
+);
+
+Route::group(
+    [
+        'prefix' => 'admin',
+        'namespace' => 'Admin',
+        'as' => 'admin.'
+
+    ],
+    function () {
+        Route::match(['post', 'get'], '/add', [
+            'uses' => 'NewsController@addNews',
+            'as' => 'addNews'
+        ]);
+        Route::get('/login', [
+            'uses' => 'LoginController@index',
+            'as' => 'login'
         ]);
     }
 );

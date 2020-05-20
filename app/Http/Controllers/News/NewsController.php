@@ -174,22 +174,5 @@ class NewsController extends Controller
         return view ('news.news', $data);
     }
 
-    public function addNewsRedir () {
-        $nextId = $this->getCountOfNews() + 1;
-        return redirect(route('news.add', $nextId));
-    }
 
-    public function addNews (int $id) {
-        $nextId = $this->getCountOfNews() + 1;
-        if ($nextId === $id) {
-            $data = [
-                'view' => '',
-                'metaTitle' => 'Добавить новость',
-                'cats' => $this->getCats()
-            ];
-            return view ('news.add', $data);
-        } else {
-            return $this->addNewsRedir();
-        };
-    }
 }

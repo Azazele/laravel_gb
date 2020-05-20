@@ -4,7 +4,8 @@
 
 @section('content')
 <div class="container cont">
-    <form action="">
+    <form action="{{ route('admin.addNews') }}" method="post">
+        @csrf
         <div class="form-group">
             <label for="formGroupExampleInput">Заголовок</label>
             <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Название статьи">

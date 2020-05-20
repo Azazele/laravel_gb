@@ -18,8 +18,10 @@
                     <li><a href="/">Главная</a></li>
                     <li><a href="{{ route('news.all') }}">Все новости</a></li>
                     <li><a href="{{ route('news.allCats') }}">Категории</a></li>
-                    <li><a href="{{ route('login') }}">Авторизация</a></li>
-                    <li><a href="{{ route('news.all') . '/add' }}">Добавить новость</a></li>
+                    <li><a href="{{ route('feedback') }}">Отзывы</a></li>
+                    <li><a href="{{ route('order') }}">Заказ выгрузки</a></li>
+                    <li><a href="{{ route('admin.login') }}">Авторизация</a></li>
+                    <li><a href="{{ route('admin.addNews')}}">Добавить новость</a></li>
                 </ul>
             </div>
         </nav>
