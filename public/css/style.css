@@ -142,11 +142,13 @@ nav .menu a:hover{
 /* Категории */
 .cats {
     list-style: none;
-    display: flex;
     padding: 0;
 }
 .cats li{
-    margin-left: 90px;
+    margin-top: 5px;
+}
+.cats li::before{
+    content: '>  ';
 }
 .cats a{
     text-decoration: none;

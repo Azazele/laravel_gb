@@ -20,7 +20,7 @@
             <label for="exampleFormControlSelect1">Выбор категории</label>
             <select class="form-control" id="exampleFormControlSelect1">
                 @foreach($cats as $cat)
-                    <option>{{ $cat }}</option>
+                    <option>{{ $cat->title }}</option>
                 @endforeach
             </select>
         </div>

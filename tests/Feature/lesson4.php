@@ -22,10 +22,8 @@ class lesson4 extends TestCase
 
     public function testNewsIds()
     {
-        $ids = [1, 2, 3, 4, 5, 6, 7, 8];
-        foreach ($ids as $id) {
-            $response = $this->get('/news/' . $id);
-
+        for ($i = 1; $i < 20; $i++) {
+            $response = $this->get('/news/' . $i);
             $response->assertStatus(200);
         }
     }
@@ -39,9 +37,8 @@ class lesson4 extends TestCase
 
     public function testCatsIds()
     {
-        $ids = [1, 2, 3, 4];
-        foreach ($ids as $id) {
-            $response = $this->get('/news/cats/' . $id);
+        for ($i = 1; $i < 20; $i++) {
+            $response = $this->get('/news/cats/' . $i);
             $response->assertStatus(200);
         }
 

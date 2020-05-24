@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\NewsModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\News\NewsController;
 
@@ -9,9 +10,11 @@ use App\Http\Controllers\News\NewsController;
 class HomeController extends Controller
 {
 
-    public function index() {
-        $newsClass = new NewsController;
-        $news = $newsClass->getNewsByCatId(1);
+    public function index()
+    {
+        $newsModel = new NewsModel();
+        $news = $newsModel->getNewsByCatId(1);
+
         $domain = $_SERVER['SERVER_NAME'];
         $desc = ' - сайт агрегатор каких-то данных. Приветсвуем вас!';
 
