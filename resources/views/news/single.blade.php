@@ -12,7 +12,7 @@
             <p><span>Дата публикации: </span>{{ $news->created_at }}</p>
             <p><span>Категории: </span>
             @foreach ($cats as $cat)
-                <a href="{{ route( 'news.cat', $cat->id ) }}">{{ $cat->name }}</a> |
+                <a href="{{ route( 'news.cat', $cat->id ) }}">{{ $cat->title }}</a> |
             @endforeach
             </p>
         </div>

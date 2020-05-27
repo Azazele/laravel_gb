@@ -17,7 +17,7 @@ class CreateNewsTable extends Migration
             $table->id();
             $table->string('title', 255)->nullable(false);
             $table->text('content')->nullable(false);
-            $table->string('img', 255)->nullable(false);
+            $table->string('img', 255)->nullable(false)->default('https://loremflickr.com/500/500');
             $table->timestamps();
             $table->boolean('is_private')->default(true);
             $table->bigInteger('id_source')->default(1);

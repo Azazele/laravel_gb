@@ -48,14 +48,6 @@ Route::group(
             'uses' => 'NewsController@cat',
             'as' => 'cat'
         ]);
-        Route::get('/add', [
-            'uses' => 'NewsController@addNewsRedir',
-            'as' => 'addRedir'
-        ]);
-        Route::get('/add/{id}', [
-            'uses' => 'NewsController@addNews',
-            'as' => 'add'
-        ]);
         Route::get('/{id}', [
             'uses' => 'NewsController@newsSingle',
             'as' => 'single'
@@ -71,10 +63,8 @@ Route::group(
 
     ],
     function () {
-        Route::match(['post', 'get'], '/add', [
-            'uses' => 'NewsController@addNews',
-            'as' => 'addNews'
-        ]);
+        Route::resource('news', 'NewsController');
+        Route::resource('cats', 'CategoryController');
         Route::get('/login', [
             'uses' => 'LoginController@index',
             'as' => 'login'

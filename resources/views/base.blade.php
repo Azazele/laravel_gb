@@ -18,11 +18,21 @@
                     <li><a href="/">Главная</a></li>
                     <li><a href="{{ route('news.all') }}">Все новости</a></li>
                     <li><a href="{{ route('news.allCats') }}">Категории</a></li>
-                    <li><a href="{{ route('feedback') }}">Отзывы</a></li>
-                    <li><a href="{{ route('order') }}">Заказ выгрузки</a></li>
-                    <li><a href="{{ route('admin.login') }}">Авторизация</a></li>
-                    <li><a href="{{ route('admin.addNews')}}">Добавить новость</a></li>
+                    <!--li><a href="{{ route('feedback') }}">Отзывы</a></li>
+                    <li><a href="{{ route('order') }}">Заказ выгрузки</a></li-->
                 </ul>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Панель администратора
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{ route('admin.login') }}">Авторизация</a>
+                        <a class="dropdown-item" href="{{ route('admin.news.create')}}">Добавить новость</a>
+                        <a class="dropdown-item" href="{{ route('admin.news.index')}}">Все новости</a>
+                        <a class="dropdown-item" href="{{ route('admin.cats.create')}}">Добавить категорию</a>
+                        <a class="dropdown-item" href="{{ route('admin.cats.index')}}">Все категории</a>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>

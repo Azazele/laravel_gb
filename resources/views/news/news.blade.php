@@ -31,5 +31,6 @@
             @endforelse
         @endif
     </div>
+    {{ $news->links() }}
 </div>
 @endsection

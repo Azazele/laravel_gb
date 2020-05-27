@@ -4,14 +4,13 @@ namespace App\Http\Controllers\News;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\NewsModel;
+use App\Models\News;
+use App\Models\Category;
 
 class NewsController extends Controller
 {
     public function allNews () {
-        $newsModel = new NewsModel();
-        $news = $newsModel->getNews();
-
+        $news = News::query()->where('is_private', 1)->paginate(6);
         $data = [
             'news' => $news,
             'metaTitle' => 'Все новости'
@@ -20,38 +19,30 @@ class NewsController extends Controller
     }
 
     public function newsSingle (int $id) {
-        $newsModel = new NewsModel();
-        $news = $newsModel->getNewsById($id);
-        $cats = $newsModel->getCatsByNewsId($id);
 
         $data = [
-            'news' => $news,
-            'cats' => $cats,
-            'metaTitle' => $news->title
+            'news' => News::find($id),
+            'cats' => News::query()->find($id)->cats()->get(),
+            'metaTitle' => News::find($id)->title
         ];
+
         return view ('news.single', $data);
     }
 
     public function allCats () {
-        $newsModel = new NewsModel();
-        $cats = $newsModel->getCats();
-
         $data = [
-            'cats' => $cats,
+            'cats' => Category::all(),
             'metaTitle' => 'Все категории'
         ];
         return view ('news.allCats', $data);
     }
 
     public function cat (int $id) {
-        $newsModel = new NewsModel();
-        $news = $newsModel->getNewsByCatId($id);
-        $cat_name = $newsModel->getCatByID($id)->title;
-
+        $news = Category::query()->find($id)->news()->where('is_private', 1)->paginate(6);
         $data = [
            'news' => $news,
-           'h' => 'Категория: ' . $cat_name,
-           'metaTitle' => $cat_name
+           'h' => 'Категория: ' . Category::find($id)->title,
+           'metaTitle' => Category::find($id)->title
          ];
          return view ('news.news', $data);
     }
