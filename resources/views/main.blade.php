@@ -9,7 +9,7 @@
     </div>
 </div>
 <div class="container">
-    <h1>Виджет вывода категории</h1>
+    <h1>Все новости</h1>
     <div class="items">
         @if($news)
             @foreach( $news as $elem)
@@ -28,5 +28,6 @@
             @endforeach
         @endif
     </div>
+    {{ $news->links() }}
 </div>
 @endsection

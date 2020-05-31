@@ -13,8 +13,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $newsModel = new News();
-        $news = Category::query()->find(1)->news()->get();
+        $news = News::query()->where('is_private', 1)->paginate(6);
 
         $domain = $_SERVER['SERVER_NAME'];
         $desc = ' - сайт агрегатор каких-то данных. Приветсвуем вас!';
