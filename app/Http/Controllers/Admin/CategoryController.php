@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryAddRequest;
+use App\Http\Requests\CategoryEditRequest;
 
 class CategoryController extends Controller
 {
@@ -41,10 +43,14 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryAddRequest $request)
     {
-        $news = Category::create($request->all());
-        return redirect()->route('admin.cats.index');
+        $cat = Category::create($request->all());
+        if(isset($errors) && $errors->any()) {
+            return back();
+        } else {
+            return redirect()->route('admin.cats.index');
+        }
     }
 
     /**
@@ -81,7 +87,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $cat)
+    public function update(CategoryEditRequest $request, Category $cat)
     {
         $cat->title = $request->title;
         $cat->description = $request->description;

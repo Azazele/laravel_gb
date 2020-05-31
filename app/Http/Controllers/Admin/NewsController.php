@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
 use function GuzzleHttp\Promise\queue;
+use App\Http\Requests\NewsRequest;
 
 class NewsController extends Controller
 {
@@ -44,7 +45,7 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
         $news = News::create($request->all());
         $cats = [];
@@ -53,8 +54,11 @@ class NewsController extends Controller
         }
 
         $news->cats()->saveMany($cats);
-
-        return redirect()->route('admin.news.index');
+        if(isset($errors) && $errors->any()) {
+            return back();
+        } else {
+            return redirect()->route('admin.news.index');
+        }
     }
 
     /**
@@ -92,7 +96,7 @@ class NewsController extends Controller
      * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(NewsRequest $request, News $news)
     {
         $news->fill($request->all());
         $news->save();

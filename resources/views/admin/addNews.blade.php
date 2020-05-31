@@ -5,10 +5,19 @@
 @section('content')
 <div class="container cont">
     <form action="{{ route('admin.news.store') }}" method="post">
+        @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         @csrf
         <div class="form-group">
             <label for="formGroupExampleInput">Заголовок</label>
-            <input name="title" type="text" class="form-control" id="formGroupExampleInput" placeholder="Название статьи">
+            <input name="title" type="text" class="form-control" id="formGroupExampleInput" value="{{ Request::old('title') }}" placeholder="Название статьи">
         </div>
         <div class="form-group">
             <p>Категории</p>
@@ -23,7 +32,7 @@
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Описание</label>
-            <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ Request::old('content') }}</textarea>
         </div>
         <div class="form-group">
             <p>Новость приватная?</p>

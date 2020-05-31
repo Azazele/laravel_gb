@@ -5,6 +5,15 @@
 @section('content')
 <div class="container cont">
     <form action="{{ route('admin.news.update', $news) }}" method="post">
+        @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         @csrf
         @method('put')
         <div class="form-group">
