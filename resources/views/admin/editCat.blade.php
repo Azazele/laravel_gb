@@ -13,7 +13,7 @@
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Описание</label>
-            <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="3">
+            <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3">
                 {{ $category->description }}
             </textarea>
         </div>

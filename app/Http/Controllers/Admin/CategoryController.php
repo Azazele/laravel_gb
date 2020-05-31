@@ -64,11 +64,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $cat)
     {
         $data = [
             'metaTitle' => 'Редактировать категорию - Админ панель',
-            'category' => $category
+            'category' => $cat
         ];
 
         return view('admin.editCat', $data);
@@ -81,10 +81,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $cat)
     {
-        $category->fill($request->all());
-        $category->save();
+        $cat->title = $request->title;
+        $cat->description = $request->description;
+        $cat->save();
 
         return back();
     }
@@ -95,9 +96,9 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Category $cat)
     {
-        $category->delete();
+        $cat->delete();
         return back();
     }
 }
