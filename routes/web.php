@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [
-    'uses' => 'HomeController@index',
+    'uses' => 'HomeMainController@index',
     'as' => 'main'
 ]);
 
@@ -59,15 +59,26 @@ Route::group(
     [
         'prefix' => 'admin',
         'namespace' => 'Admin',
-        'as' => 'admin.'
+        'as' => 'admin.',
+        'middleware' => ['auth', 'admin']
 
     ],
     function () {
         Route::resource('news', 'NewsController');
         Route::resource('cats', 'CategoryController');
-        Route::get('/login', [
-            'uses' => 'LoginController@index',
-            'as' => 'login'
-        ]);
+        Route::resource('profiles', 'ProfileController');
     }
 );
+
+Auth::routes();
+
+Route::get('/logout', function (){
+    Auth::logout();
+    return redirect('/');
+});
+
+Route::get('/profile', [
+    'uses' => 'ProfileController@index',
+    'as' => 'profile',
+    'middleware' => 'auth'
+]);

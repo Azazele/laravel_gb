@@ -21,18 +21,39 @@
                     <!--li><a href="{{ route('feedback') }}">Отзывы</a></li>
                     <li><a href="{{ route('order') }}">Заказ выгрузки</a></li-->
                 </ul>
+                @if(Auth::check() && (bool)Auth::user()->is_admin === true)
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Панель администратора
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{{ route('admin.login') }}">Авторизация</a>
                         <a class="dropdown-item" href="{{ route('admin.news.create')}}">Добавить новость</a>
                         <a class="dropdown-item" href="{{ route('admin.news.index')}}">Все новости</a>
                         <a class="dropdown-item" href="{{ route('admin.cats.create')}}">Добавить категорию</a>
                         <a class="dropdown-item" href="{{ route('admin.cats.index')}}">Все категории</a>
+                        <a class="dropdown-item" href="{{ route('admin.profiles.index')}}">Редактирование пользователей</a>
+                        <a class="dropdown-item" href="{{ route('logout')}}">Выход</a>
                     </div>
                 </div>
+                @elseif(Auth::check() && (bool)Auth::user()->is_admin === false)
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Параметры профиля
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{ route('profile')}}">Редактирование профиля</a>
+                        <a class="dropdown-item" href="{{ route('logout')}}">Выход</a>
+                    </div>
+                @else
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Учётная запись
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{{ route('login') }}">Войти</a>
+                            <a class="dropdown-item" href="{{ route('register')}}">Регистрация</a>
+                        </div>
+                    </div>
+                @endif
             </div>
         </nav>
     </header>

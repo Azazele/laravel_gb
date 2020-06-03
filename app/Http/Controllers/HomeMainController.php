@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\News\NewsController;
 
 
-class HomeController extends Controller
+class HomeMainController extends Controller
 {
 
     public function index()

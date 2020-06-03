@@ -39,13 +39,13 @@
         <div class="form-group">
             <p>Новость приватная?</p>
             <div class="form-check">
-                <input name="is_private" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="{{ $news->is_private }}" @if($news->is_private === 1)checked @endif>
+                <input name="is_private" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="1" @if($news->is_private === 1)checked @endif>
                 <label class="form-check-label" for="exampleRadios1">
                     Да
                 </label>
             </div>
             <div class="form-check">
-                <input name="is_private" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="{{ $news->is_private }}"@if($news->is_private === 0)checked @endif>
+                <input name="is_private" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="0"@if($news->is_private === 0)checked @endif>
                 <label class="form-check-label" for="exampleRadios2">
                     Нет
                 </label>
