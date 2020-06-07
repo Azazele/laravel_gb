@@ -32,6 +32,8 @@
                         <a class="dropdown-item" href="{{ route('admin.cats.create')}}">Добавить категорию</a>
                         <a class="dropdown-item" href="{{ route('admin.cats.index')}}">Все категории</a>
                         <a class="dropdown-item" href="{{ route('admin.profiles.index')}}">Редактирование пользователей</a>
+                        <a class="dropdown-item" href="{{ route('admin.newsSources.create')}}">Добавить источник</a>
+                        <a class="dropdown-item" href="{{ route('admin.newsSources.index')}}">Все источники</a>
                         <a class="dropdown-item" href="{{ route('logout')}}">Выход</a>
                     </div>
                 </div>

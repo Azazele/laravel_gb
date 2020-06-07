@@ -67,6 +67,11 @@ Route::group(
         Route::resource('news', 'NewsController');
         Route::resource('cats', 'CategoryController');
         Route::resource('profiles', 'ProfileController');
+        Route::resource('newsSources', 'NewsSourceController');
+        Route::get('/newsSources/rssUpdate/{id}',[
+            'uses' => 'NewsSourceController@rssUpdate',
+            'as' => 'newsSources.rssUpdate'
+        ]);
     }
 );
 
@@ -81,4 +86,21 @@ Route::get('/profile', [
     'uses' => 'ProfileController@index',
     'as' => 'profile',
     'middleware' => 'auth'
+]);
+
+Route::get('/auth/vkRedirect', [
+    'uses' => 'Auth\VkAuthController@vkRedirect',
+    'as' => 'vkRedirect'
+]);
+Route::get('/auth/vkAuth', [
+    'uses' => 'Auth\VkAuthController@vkAuth',
+    'as' => 'vkAuth'
+]);
+Route::get('/auth/fbRedirect', [
+    'uses' => 'Auth\FbAuthController@vkRedirect',
+    'as' => 'fbRedirect'
+]);
+Route::get('/auth/fbAuth', [
+    'uses' => 'Auth\FbAuthController@vkAuth',
+    'as' => 'fbAuth'
 ]);
