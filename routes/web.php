@@ -97,10 +97,10 @@ Route::get('/auth/vkAuth', [
     'as' => 'vkAuth'
 ]);
 Route::get('/auth/fbRedirect', [
-    'uses' => 'Auth\FbAuthController@vkRedirect',
+    'uses' => 'Auth\FbAuthController@fbRedirect',
     'as' => 'fbRedirect'
 ]);
 Route::get('/auth/fbAuth', [
-    'uses' => 'Auth\FbAuthController@vkAuth',
+    'uses' => 'Auth\FbAuthController@fbAuth',
     'as' => 'fbAuth'
 ]);

@@ -8,7 +8,7 @@ use App\Models\SocialAuth;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class VkAuthController extends Controller
+class FbAuthController extends Controller
 {
     public function fbRedirect()
     {
