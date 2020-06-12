@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use function GuzzleHttp\Promise\queue;
 use App\Http\Requests\NewsRequest;
 
@@ -48,6 +49,13 @@ class NewsController extends Controller
     public function store(NewsRequest $request)
     {
         $news = News::create($request->all());
+        if($request->has('img')) {
+            $file = $request->file('img');
+            $path = Storage::disk('uploads')->putFile('', $file );
+            $news->img = $path;
+            $news->save();
+        }
+
         $cats = [];
         foreach ($request->cats as $cat_id) {
             $cats[] = Category::find($cat_id);
@@ -99,6 +107,11 @@ class NewsController extends Controller
     public function update(NewsRequest $request, News $news)
     {
         $news->fill($request->all());
+        if($request->has('img')) {
+            $file = $request->file('img');
+            $path = Storage::disk('uploads')->putFile('', $file );
+            $news->img = $path;
+        }
         $news->save();
 
         $cats = [];
@@ -106,6 +119,7 @@ class NewsController extends Controller
             $cats[] = Category::find($cat_id);
         }
 
+        $news->cats()->detach();
         $news->cats()->saveMany($cats);
 
         return back();

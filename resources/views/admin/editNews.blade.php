@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container cont">
-    <form action="{{ route('admin.news.update', $news) }}" method="post">
+    <form action="{{ route('admin.news.update', $news) }}" method="post" enctype="multipart/form-data">
         @if ($errors->any())
             <div class="alert alert-danger" role="alert">
                 <ul>
@@ -21,6 +21,13 @@
             <input name="title" type="text" class="form-control" id="formGroupExampleInput" value="{{ $news->title }}" placeholder="Название статьи">
         </div>
         <div class="form-group">
+            <div class="custom-file">
+                <label for="exampleFormControlFile1">Замена изображения</label>
+                <input type="file" value="{{ $news->img }}" name="img" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+            <img src="{{ asset('uploads') . '/' . $news->img }}" width="200">
+        </div>
+        <div class="form-group">
             <p>Категории</p>
             @foreach($cats as $cat)
             <div class="form-check">
@@ -34,7 +41,7 @@
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Описание</label>
-            <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ $news->content }}</textarea>
+            <textarea id="add-news" name="content" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ $news->content }}</textarea>
         </div>
         <div class="form-group">
             <p>Новость приватная?</p>
@@ -55,3 +62,16 @@
     </form>
 </div>
 @endsection
+
+@push('footer-scripts')
+    <script type="text/javascript" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+    <script>
+        let options = {
+            filebrowserImageBrowseUrl: '{{ asset('laravel-filemanager?type=Images') }}',
+            filebrowserImageUploadUrl: '{{ asset('laravel-filemanager/upload?type=Images&_token=') }}',
+            filebrowserBrowseUrl: '{{ asset('laravel-filemanager?type=Files') }}',
+            filebrowserUploadUrl: '{{ asset('laravel-filemanager/upload?type=Files&_token=') }}'
+        };
+        CKEDITOR.replace('add-news', options);
+    </script>
+@endpush

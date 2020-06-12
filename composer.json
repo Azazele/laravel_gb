@@ -14,9 +14,12 @@
         "fzaninotto/faker": "^1.9",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
+        "laravel/helpers": "^1.2",
         "laravel/tinker": "^2.0",
+        "predis/predis": "^1.1",
         "socialiteproviders/facebook": "^1.0",
-        "socialiteproviders/vkontakte": "^4.1"
+        "socialiteproviders/vkontakte": "^4.1",
+        "unisharp/laravel-filemanager": "~1.8"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",

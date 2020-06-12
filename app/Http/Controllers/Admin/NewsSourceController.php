@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\NewsParsing;
 use App\Services\YandexNews;
 use App\Models\NewsSource;
 use Illuminate\Http\Request;
@@ -105,18 +106,15 @@ class NewsSourceController extends Controller
 
     public function rssUpdate (int $id)
     {
-        switch ($id){
-            case 1:
-                return back();
-                break;
-            case 7:
-                $newsObj = new YandexNews;
-                $newsObj->updateRss($id, 33);
-                return back();
-                break;
-            default:
-                return back();
+        $source = new NewsSource();
+        $link = $source->find($id)->data_link;
+        if ($link === '/') {
+            return back();
         }
+        /*$newsObj = new YandexNews;
+        $newsObj->updateRss($link);*/
+        NewsParsing::dispatch($link, $id);
+        return back();
 
     }
 }

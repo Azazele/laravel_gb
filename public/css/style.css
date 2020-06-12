@@ -179,3 +179,7 @@ nav .menu a:hover{
 .single a {
     text-decoration: none;
 }
+.single img {
+    width: 500px;
+    height: 500px;
+}

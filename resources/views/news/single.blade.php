@@ -8,7 +8,7 @@
         <img src="{{ $news->img }}" alt="{{ $news->title }}">
         <div class="single-content">
             <h1>{{ $news->title }}</h1>
-            <p>{{ $news->content }}</p>
+            <p>{!! $news->content !!}</p>
             <p><span>Дата публикации: </span>{{ $news->created_at }}</p>
             <p><span>Категории: </span>
             @foreach ($cats as $cat)
